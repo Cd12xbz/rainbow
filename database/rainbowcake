@@ -1,0 +1,169 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 24, 2023 at 02:27 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `cart_system`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `product_nama` varchar(100) NOT NULL,
+  `product_price` varchar(50) NOT NULL,
+  `product_image` varchar(255) NOT NULL,
+  `qty` int(10) NOT NULL,
+  `total_price` varchar(100) NOT NULL,
+  `product_code` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `username` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`username`, `password`) VALUES
+('admin', 'efbc49ec0721c2e4730dcd7f65f69e10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `pmode` varchar(50) NOT NULL,
+  `products` varchar(255) NOT NULL,
+  `amount_paid` varchar(100) NOT NULL,
+  `tanggal_beli` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `tanggal_pesanan` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `nama`, `email`, `phone`, `address`, `pmode`, `products`, `amount_paid`, `tanggal_beli`, `tanggal_pesanan`) VALUES
+(59, 'Theo Krisna Amarya', 'wdeijf@gmail.com', '08569789520', 'Dsn. Morangan', 'Qris', 'Bolu Tape Kismis(2)', '8000', '2023-12-06 07:36:42', '2023-12-30'),
+(60, 'Ibu Rosiana', 'rosiana@gmail.com', '088975896354', 'Jl. Flaminggo Rt. 2 Rw 9 Kec. Parang Kab. Kediri', 'Qris', 'Bolu Karamel(1)', '6000', '2023-12-06 07:46:01', '2023-12-22'),
+(63, 'Trisa Anabel Rosedinanti', 'mrjanghyuns@gmail.com', '025857984656', 'Balakhdfi', 'Qris', 'Bolu Karamel(1)', '6000', '2023-12-09 12:51:42', '2023-12-30'),
+(64, 'Trisa Anabel Rosedinanti', 'wdeijf@gmail.com', '088975896354', 'dfgrsgr', 'Qris', 'Bolu Karamel(1)', '6000', '2023-12-09 13:29:38', '2024-01-02'),
+(65, 'Riski', 'KiloEmail@gmail.com', '081515498665', 'Jduygewfgiu', 'Qris', 'Bolu Tape Kismis(1)', '4000', '2023-12-09 13:30:55', '2024-01-06'),
+(66, 'Bagasi', 'bagasi@gmail.com', '08569787984656565', 'K:JAFuieufheergfnklenkl', 'COD', 'Bolu Tape Kismis(1)', '4000', '2023-12-09 13:56:00', '2023-12-19'),
+(67, 'Theo', 'krisna@gmail.com', '0882193474618188', 'Sdhufhmn', 'Qris', 'Bolu Karamel(1)', '6000', '2023-12-20 01:39:35', '2023-12-21'),
+(68, 'Mastther', 'obligasi@gmail.com', '157487421', 'Rejowinangun', 'Qris', 'Bolu Karamel(1)', '6000', '2023-12-24 11:11:53', '2023-12-29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
+  `product_nama` varchar(255) NOT NULL,
+  `product_price` varchar(100) NOT NULL,
+  `product_qty` int(11) NOT NULL DEFAULT 1,
+  `product_image` varchar(255) NOT NULL,
+  `product_code` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `product_nama`, `product_price`, `product_qty`, `product_image`, `product_code`) VALUES
+(1, 'Rainbow Cake', '5000', 0, 'image/rainbow_cake.jpg', 'k1'),
+(2, 'Bolen Pisang', '5000', 0, 'image/bolen_pisang.jpg', 'k2'),
+(3, 'Bolu Tape Kismis', '4000', 0, 'image/bolutape_kismis.jpg', 'k3'),
+(4, 'Bolu Karamel', '6000', 0, 'image/karamel.jpg', 'k4');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
